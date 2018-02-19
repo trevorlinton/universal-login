@@ -1,0 +1,27 @@
+<%- include('header') %>
+    <% if(account && account.user && account.user.photo) { %>
+    <script>
+      window.addEventListener('load', function() {
+        document.querySelector(".avatar").src = "<%=account.user.photo%>"
+      })
+    </script>
+    <% } else { %>
+    <!-- display gavatar -->
+    <script>
+      window.addEventListener('load', function() {
+        document.querySelector(".avatar").src = "https://www.gravatar.com/avatar/" + md5("<%=email%>".toLowerCase().trim())
+      })
+    </script>
+    <% } %>
+    <form method="post" action="/interaction/<%= details.uuid %>/confirm">
+      <img class="avatar" src="" />
+      <p>Would you like to authorize <a href="<%=details.params.client.website%>"><%= details.params.client.name%></a> (<%=details.params.client.website%>) to access your information?</p>
+      <ul>
+        <% details.params.scope.split(' ').map((x) => { return `${scope_names[x]}` }).forEach((scope) => { %>
+        <li><%=scope%></li>
+        <% }) %>
+      </ul>
+      <input type="hidden" name="csrf" value="<%=csrf%>" />
+      <button type="submit" name="submit">Authorize</button>
+    </form>
+<%- include('footer') %>

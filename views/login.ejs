@@ -1,0 +1,27 @@
+<%- include('header') %>
+    <!-- display gavatar -->
+    <script>
+      var interval = null
+      function get_gravatar() {
+        if(interval) {
+          clearInterval(interval)
+        }
+        interval = setTimeout(function() {
+          document.querySelector(".avatar").src = "https://www.gravatar.com/avatar/" + md5(document.querySelector('input[name="email"]').value.toLowerCase().trim())
+          interval = null
+        }, 500)
+      }
+      window.addEventListener('load', function() {
+        document.querySelector('input[name="email"]').addEventListener("input", get_gravatar)
+      })
+    </script>
+    <form method="post" action="/interaction/<%= details.uuid %>/login">
+      <img class="avatar" src="" />
+      <p>Hello. Enter your email address and password to login. Don't have an account? Trust us, you do.</p>
+      
+      <label <% if(error) { %> class="error" <% } %> for="email"><% if(error) { %><%=error%><% } else { %>Email<% }%></label>
+      <input <% if(error) { %> class="error" <% } %> type="email" name="email" value="" />
+      <input type="hidden" name="csrf" value="<%=csrf%>" />
+      <button type="submit">Next</button>
+    </form>
+<%- include('footer') %>

@@ -1,0 +1,26 @@
+<%- include('header') %>
+    <!-- display gavatar -->
+    <script>
+      window.addEventListener('load', function() {
+        document.querySelector(".avatar").src = "https://www.gravatar.com/avatar/" + md5("<%=email%>".toLowerCase().trim())
+      })
+    </script>
+    <form method="post" action="/register.html">
+      <img class="avatar" src="" />
+      <p>Can we save this information for performance and added functionality on our service? You can remove, update or change this information at any time.</p>
+      <label for="name">Name</label>
+      <input type="text" name="name" value="<%=user.name.first + ' ' + user.name.last%>" />
+      <label for="email">Email</label>
+      <input type="email" name="email" value="<%=email%>" />
+      <label for="phone">Phone</label>
+      <input type="text" name="phone" value="<%=user.phone%>" />
+      <label for="phone">Company</label>
+      <input type="text" name="company" value="<%=user.company%>" />
+      <input type="hidden" name="csrf" value="<%=csrf%>" />
+      <input type="hidden" name="optin" value="true" />
+      <p>
+        <button type="submit" class="ok">Yes</button>
+        <button type="button" class="cancel" onclick="window.location='/authorize.html'">No, I'd prefer not</button>
+      </p>
+    </form>
+<%- include('footer') %>

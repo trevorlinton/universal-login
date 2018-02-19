@@ -1,0 +1,30 @@
+<%- include('header') %>
+    <section>
+      <h2>Frequently asked questions for users</h2>
+      <hr/>
+      <strong>Why do you want my email and password?</strong>
+      <p>We validate that you're the owner of this email address, then send whether or not you truly own this email address back to the website. To verify you own this email address you can login with your email account password (or in some cases, complete extra steps). By using this service you don't have to remember a password for each website.</p>
+
+      <strong>Do you store my email address or password?</strong>
+      <p>We take your identity seriously. We do not store your password (even encrypted or hashed versions) in any shape or form. We do not store your email address unless you opt-in and add it to your identity profile.</p>
+
+      <strong>How do you validate my email address and password?</strong>
+      <p>To validate your email address and password our servers will login to our email account like your iPhone or computer would. We do this once to establish your identity, then disconnect. For some email providers they require we go through an oauth flow with their services, in this case we do not login to your account, but go through the oauth flow to confirm you're the owner of this account.</p>
+
+      <strong>I dont want to give you my password.</strong>
+      <p>Thats ok, and we understand. To use our services you can still click the link "I dont feel comfortable doing this" when being prompted for a password and instead of giving us your password we will send you an email with a link to validate you own this account.</p>
+
+      <h2>Frequently asked questions for companies</h2>
+      <hr/>
+
+      <strong>How can I require users to go through our oauth login rather than put in their password?</strong>
+      <p>You can opt-in to using oauth2 flows by adding DNS records to the domain in question. The oauth2 client id and secret should be add a TXT record <code>client-id.auth.io</code> with the value of the client id and <code>client-secret.auth.io</code> with an <i>encrypted</i> client secret.  To encrypt the client secret use our RSA public key, you can find more instructions <a href="setup-oauth.html">here</a>. Finally, add the TXT record <code>client-url.auth.io</code> and <code>userinfo-url.auth.io</code>.</p>
+
+      <strong>How can I disable users ability to login with my domain?</strong>
+      <p>You can prevent anyone from using this service on your domain by adding a TXT record to your domain with the key <code>opt-out.auth.io</code> and with the any value. Users will not be permitted to login once the time to live expires.  It should be noted existing refresh or access tokens are not invalidated through this operation but will expire normally. To re-enable users ability to login with this domain remove the record.</p>
+
+      <strong>Users cannot login with my domain, how can I enable it?</strong>
+      <p>If you're using secure imap, create a SRV for <code>_imaps._tcp.example.com</code> or <code>_imap._tcp.example.com</code> with the domain of your secure imap service and ensure its responding on standard imap secure port 993. If you're using Microsoft&trade; Exchange&copy; enable auto discovery on your email services.  If you are using Office365&trade; ensure you enable auto discovery through Office365. Finally, if you still are having troubles, see the instructions above on enabling oauth2 or double check your email servers are accessible on the internet.</p>
+
+    </section>
+<%- include('footer') %>
