@@ -21,6 +21,7 @@
         <li><%=scope%></li>
         <% }) %>
       </ul>
+      <label><input type="checkbox" name="remember" value="true" /> This is a private computer, remember me.</label>
       <input type="hidden" name="csrf" value="<%=csrf%>" />
       <button type="submit" name="submit">Authorize</button>
     </form>

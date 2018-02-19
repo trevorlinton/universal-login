@@ -49,7 +49,7 @@ module.exports = async function(expressApp, renderError) {
   assert(process.env.SECURE_KEY, 'process.env.SECURE_KEY missing');
   assert.equal(process.env.SECURE_KEY.split(',').length, 2, 'process.env.SECURE_KEY format invalid');
   assert(process.env.REDIS_URL, 'process.env.REDIS_URL missing, run `heroku-redis:hobby-dev`');
-
+  assert(process.env.KEYSTORE, 'process.env.KEYSTORE is missing, run `node ./tools/keygen.js`')
 
   // simple account model for this application, user list is defined like so
   const Account = require('./account');

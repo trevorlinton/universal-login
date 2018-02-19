@@ -11,3 +11,7 @@ The following environment varialbes must be setup:
 * `SECURE_KEY` - This is used for encrypting oidc information for authentication codes and transit temporary info.
 * `REDIS_URL` - The redis for storing session information.
 * `SECRET` - This is used for encrypting cookies.
+
+## Testing and Contributing
+
+* `TEST_MODE` - Disables secure and http only cookies so it can be used on localhost ports via http.
