@@ -54,6 +54,7 @@ class Account {
         url = null // we already have office365 auto-discovery built into the exchange module.
       }
       debug("account is using discovery url: " + url)
+      debug("account is using email: " + email)
       let conn = await exchange(email, password, url)
       let user = await conn.user(email)
       let account = new Account(JSON.parse(JSON.stringify(user)))
