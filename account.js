@@ -53,6 +53,7 @@ class Account {
       if(discovery.exchange.host === 'autodiscover-s.outlook.com') {
         url = null // we already have office365 auto-discovery built into the exchange module.
       }
+      debug("account is using discovery url: " + url)
       let conn = await exchange(email, password, url)
       let user = await conn.user(email)
       let account = new Account(JSON.parse(JSON.stringify(user)))
