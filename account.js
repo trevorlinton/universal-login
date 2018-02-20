@@ -55,7 +55,7 @@ class Account {
       }
       debug("account is using discovery url: " + url)
       debug("account is using email: " + email)
-      let conn = await exchange(email, password, null) //url)
+      let conn = await exchange(email, password, url)
       let user = await conn.user(email)
       let account = new Account(JSON.parse(JSON.stringify(user)))
       try {
