@@ -629,7 +629,7 @@ function auto_discover(user, pass, auto_discovery_url, callback) {
 
 function get_connection(url, user, pass) {
   return catcher(() => {
-    debug('-> get_connection');
+    debug('-> get_connection:' + url);
     var exch = new ews.ExchangeService(ews.ExchangeVersion.Exchange2015);
     exch.Credentials = new ews.ExchangeCredentials(user, pass);
     exch.Url = new ews.Uri(url);
