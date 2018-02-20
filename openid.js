@@ -114,7 +114,7 @@ module.exports = async function(expressApp, renderError) {
         client_id: 'foo',
         client_secret: 'bar',
         grant_types: ['refresh_token', 'authorization_code'],
-        redirect_uris: ['http://localhost:9002/auth/cb']
+        redirect_uris: ['https://test.ulogin.cloud/auth/cb']
       },
     ],
     // configure Provider to use the adapter
