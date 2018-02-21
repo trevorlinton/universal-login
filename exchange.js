@@ -596,7 +596,7 @@ function auto_discover(user, pass, auto_discovery_url, callback) {
   }
   catcher(() => {
     debug('-> auto_discover');
-    var autod = new ews.AutodiscoverService(new ews.Uri(auto_discovery_url), ews.ExchangeVersion.Exchange2013);
+    var autod = new ews.AutodiscoverService(new ews.Uri(auto_discovery_url));
     try {
       autod.Credentials = new ews.ExchangeCredentials(user, pass);
     } catch (e) {
